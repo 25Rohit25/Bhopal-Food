@@ -5,8 +5,7 @@
 
 **Taste the Royal Legacy of Bhopal, delivered directly to your train seat.**
 
-### 🚀 **Live Demo:** [Click Here to View App](https://bhopal-food.vercel.app) 
-*(Replace this link with your actual Vercel URL)*
+### 🚀 **Live Demo:** [Click Here to View App](https://bhopal-food.vercel.app)
 
 ---
 
