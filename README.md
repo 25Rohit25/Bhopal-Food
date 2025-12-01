@@ -1,70 +1,79 @@
-# Bhopal Food Choice App
+# 🚆 Bhopal Food Choice App
 
-A full-stack MERN application for ordering food on trains at Bhopal Junction.
+![MERN Stack](https://img.shields.io/badge/MERN-Stack-green)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 
-## Features
-- **User**: Browse menu, add to cart, place orders with seat delivery details.
-- **Admin**: Dashboard to view and manage order statuses.
-- **Tech Stack**: React, Tailwind CSS, Node.js, Express, MongoDB.
+**Taste the Royal Legacy of Bhopal, delivered directly to your train seat.**
 
-## Prerequisites
-- Node.js installed
-- MongoDB installed and running locally
+### 🚀 **Live Demo:** [Click Here to View App](https://bhopal-food.vercel.app) 
+*(Replace this link with your actual Vercel URL)*
 
-## Installation
+---
 
-1. **Clone/Download the repository**
+## 📖 About
+**Bhopal Food Choice** is a full-stack MERN application designed to solve the problem of ordering hygienic, premium food while traveling by train. It features a modern, luxury-themed UI, real-time order tracking, and a unique "Group Ordering" feature for families and large groups.
 
-2. **Install Server Dependencies**
+## ✨ Key Features
+- **👑 Premium UI/UX**: A modern, glassmorphism-inspired design with smooth animations.
+- **🚆 Train Seat Delivery**: Users can specify PNR and Seat Number for precise delivery.
+- **👨‍👩‍👧‍👦 Group Ordering**: Real-time collaborative cart for families (powered by Socket.io).
+- **📦 Order Tracking**: Live status updates for your food order.
+- **🛡️ Admin Dashboard**: Complete management system for orders and menu items.
+- **📱 Mobile First**: Fully responsive design for all devices.
+
+## 🛠️ Tech Stack
+- **Frontend**: React.js, Tailwind CSS, Framer Motion, Vite.
+- **Backend**: Node.js, Express.js, Socket.io.
+- **Database**: MongoDB Atlas (Cloud).
+- **Deployment**: Vercel (Frontend) + Render (Backend).
+
+---
+
+## ⚙️ Local Installation
+
+If you want to run this project locally:
+
+1. **Clone the repository**
    ```bash
+   git clone https://github.com/25Rohit25/Bhopal-Food.git
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   # Install Server Deps
    cd server
    npm install
-   ```
 
-3. **Install Client Dependencies**
-   ```bash
-   cd client
+   # Install Client Deps
+   cd ../client
    npm install
    ```
 
-4. **Environment Variables**
-   Ensure `server/.env` exists with:
-   ```
-   NODE_ENV=development
+3. **Environment Variables**
+   Create a `.env` file in the `server` folder:
+   ```env
    PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/bhopalfood
-   JWT_SECRET=your_jwt_secret
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
+   NODE_ENV=development
    ```
 
-5. **Seed Database** (Optional, for initial data)
+4. **Run the Project**
    ```bash
+   # Terminal 1 (Backend)
    cd server
-   node seeder.js
+   npm run dev
+
+   # Terminal 2 (Frontend)
+   cd client
+   npm run dev
    ```
-   *Note: This will also create the default admin user.*
 
-## Running the Project
+## 🔑 Admin Credentials (Demo)
+- **Email**: `admin@example.com`
+- **Password**: `password123`
 
-You need to run the backend and frontend in separate terminals.
+---
 
-### 1. Start Backend Server
-```bash
-cd server
-npm run dev
-```
-Runs on: `http://localhost:5000`
-
-### 2. Start Frontend Client
-```bash
-cd client
-npm run dev
-```
-Runs on: `http://localhost:5173`
-
-## Usage
-
-1. Open `http://localhost:5173` in your browser.
-2. **Admin Login**:
-   - Email: `admin@example.com`
-   - Password: `password123`
-# Bhopal-Food
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
