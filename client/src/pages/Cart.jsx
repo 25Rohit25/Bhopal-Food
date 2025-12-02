@@ -44,14 +44,17 @@ const Cart = () => {
                     paymentId: 'PAY_' + Math.random().toString(36).substr(2, 9).toUpperCase()
                 };
 
-                await createOrder(orderData);
+                const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+                const token = userInfo?.token;
+
+                await createOrder(orderData, token);
                 setPaymentStep('success');
 
                 // Close and Redirect after success
                 setTimeout(() => {
                     clearCart();
                     setShowPaymentModal(false);
-                    navigate('/');
+                    navigate('/my-orders');
                 }, 2000);
 
             } catch (error) {
