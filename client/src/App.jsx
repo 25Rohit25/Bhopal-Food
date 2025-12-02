@@ -11,6 +11,7 @@ import About from './pages/About';
 import ThaliBuilder from './pages/ThaliBuilder';
 import GroupOrder from './pages/GroupOrder';
 import TrackTrain from './pages/TrackTrain';
+import MyOrders from './pages/MyOrders';
 
 import AdminDashboard from './pages/AdminDashboard';
 
@@ -33,6 +34,7 @@ function App() {
               <Route path="/group/:groupId" element={<GroupOrder />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/track-train" element={<TrackTrain />} />
+              <Route path="/my-orders" element={<MyOrders />} />
             </Routes>
           </main>
           <Footer />

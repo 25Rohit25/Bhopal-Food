@@ -41,6 +41,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/coupons', require('./routes/couponRoutes'));
 
 const PORT = process.env.PORT || 5000;
 

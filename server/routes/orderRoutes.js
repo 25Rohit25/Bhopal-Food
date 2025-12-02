@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
 const { validate, orderSchema } = require('../middleware/validation');
+const { protect, admin } = require('../middleware/authMiddleware');
+const jwt = require('jsonwebtoken');
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -21,7 +23,19 @@ router.post('/', validate(orderSchema), async (req, res) => {
         res.status(400).json({ message: 'No order items' });
         return;
     } else {
+        let user = null;
+        if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+            try {
+                const token = req.headers.authorization.split(' ')[1];
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                user = decoded.id;
+            } catch (error) {
+                // Ignore invalid token
+            }
+        }
+
         const order = new Order({
+            user,
             customerName,
             phone,
             trainNumber,
@@ -34,6 +48,14 @@ router.post('/', validate(orderSchema), async (req, res) => {
         const createdOrder = await order.save();
         res.status(201).json(createdOrder);
     }
+});
+
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+router.get('/myorders', protect, async (req, res) => {
+    const orders = await Order.find({ user: req.user._id }).sort({ createdAt: -1 });
+    res.json(orders);
 });
 
 // @desc    Get order by ID
