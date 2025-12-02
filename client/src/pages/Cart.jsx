@@ -37,6 +37,7 @@ const Cart = () => {
                     ...formData,
                     items: cart.map(item => ({
                         menuItem: item._id,
+                        name: item.name,
                         quantity: item.quantity,
                         price: item.price
                     })),
