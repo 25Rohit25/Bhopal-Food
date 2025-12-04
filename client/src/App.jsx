@@ -14,6 +14,7 @@ import TrackTrain from './pages/TrackTrain';
 import MyOrders from './pages/MyOrders';
 
 import AdminDashboard from './pages/AdminDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -23,18 +24,23 @@ function App() {
           <Navbar />
           <main className="flex-grow">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/cart" element={<Cart />} />
+              {/* Public Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/thali-builder" element={<ThaliBuilder />} />
-              <Route path="/group-order" element={<GroupOrder />} />
-              <Route path="/group/:groupId" element={<GroupOrder />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/track-train" element={<TrackTrain />} />
-              <Route path="/my-orders" element={<MyOrders />} />
+
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/thali-builder" element={<ThaliBuilder />} />
+                <Route path="/group-order" element={<GroupOrder />} />
+                <Route path="/group/:groupId" element={<GroupOrder />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/track-train" element={<TrackTrain />} />
+                <Route path="/my-orders" element={<MyOrders />} />
+              </Route>
             </Routes>
           </main>
           <Footer />

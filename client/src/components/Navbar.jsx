@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Menu, X, User, Phone, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
@@ -8,16 +8,28 @@ import StickyCallBar from './StickyCallBar';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [userInfo, setUserInfo] = useState(null);
     const { cart } = useCart();
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
         window.addEventListener('scroll', handleScroll);
+
+        const user = JSON.parse(localStorage.getItem('userInfo'));
+        setUserInfo(user);
+
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [location]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('userInfo');
+        setUserInfo(null);
+        navigate('/login');
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -101,10 +113,20 @@ const Navbar = () => {
                                 )}
                             </Link>
 
-                            <Link to="/login" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-dark text-white hover:bg-primary transition-colors shadow-lg shadow-dark/20 hover:shadow-primary/30">
-                                <User size={16} />
-                                <span className="text-sm font-bold">Login</span>
-                            </Link>
+                            {userInfo ? (
+                                <button
+                                    onClick={handleLogout}
+                                    className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+                                >
+                                    <User size={16} />
+                                    <span className="text-sm font-bold">Logout</span>
+                                </button>
+                            ) : (
+                                <Link to="/login" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-dark text-white hover:bg-primary transition-colors shadow-lg shadow-dark/20 hover:shadow-primary/30">
+                                    <User size={16} />
+                                    <span className="text-sm font-bold">Login</span>
+                                </Link>
+                            )}
 
                             {/* Mobile Menu Toggle */}
                             <button
@@ -141,9 +163,15 @@ const Navbar = () => {
                                     </Link>
                                 ))}
                                 <div className="h-px bg-gray-100 my-2" />
-                                <Link to="/login" onClick={() => setIsOpen(false)} className="btn-primary w-full text-center justify-center">
-                                    Login / Sign Up
-                                </Link>
+                                {userInfo ? (
+                                    <button onClick={() => { handleLogout(); setIsOpen(false); }} className="btn-primary w-full text-center justify-center bg-red-500 text-white">
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <Link to="/login" onClick={() => setIsOpen(false)} className="btn-primary w-full text-center justify-center">
+                                        Login / Sign Up
+                                    </Link>
+                                )}
                             </div>
                         </motion.div>
                     )}
