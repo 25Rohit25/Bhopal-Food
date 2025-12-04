@@ -13,10 +13,10 @@
 
 ```mermaid
 graph TD
-    User[User / Client] -->|HTTP Requests| Frontend[Frontend (Vercel)]
-    Frontend -->|API Calls| Backend[Backend API (Render)]
-    Backend -->|Queries| DB[(MongoDB Atlas)]
-    Backend -->|Real-time Events| Socket[Socket.io]
+    User["User / Client"] -->|HTTP Requests| Frontend["Frontend (Vercel)"]
+    Frontend -->|API Calls| Backend["Backend API (Render)"]
+    Backend -->|Queries| DB[("MongoDB Atlas")]
+    Backend -->|Real-time Events| Socket["Socket.io"]
     Socket -->|Updates| Frontend
 ```
 
