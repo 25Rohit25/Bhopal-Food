@@ -20,7 +20,12 @@ const Register = () => {
             localStorage.setItem('userInfo', JSON.stringify(data));
             navigate('/');
         } catch (error) {
-            setError(error.response?.data?.message || 'Registration failed');
+            console.error("Registration Error:", error.response?.data || error.message);
+            const message = error.response?.data?.message || 'Registration failed';
+            const details = error.response?.data?.errors
+                ? error.response.data.errors.map(e => `${e.field}: ${e.message}`).join(', ')
+                : '';
+            setError(details ? `${message}: ${details}` : message);
         } finally {
             setLoading(false);
         }
