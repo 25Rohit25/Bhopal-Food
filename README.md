@@ -5,9 +5,20 @@
 
 **Taste the Royal Legacy of Bhopal, delivered directly to your train seat.**
 
-### 🚀 **Live Demo:** [Click Here to View App](https://bhopal-food.vercel.app)
+### 🚀 **Live Demo:** [Frontend App](https://bhopal-food.vercel.app) | [Backend API](https://bhopal-food-1.onrender.com)
 
 ---
+
+## 🏗️ Architecture Flow
+
+```mermaid
+graph TD
+    User[User / Client] -->|HTTP Requests| Frontend[Frontend (Vercel)]
+    Frontend -->|API Calls| Backend[Backend API (Render)]
+    Backend -->|Queries| DB[(MongoDB Atlas)]
+    Backend -->|Real-time Events| Socket[Socket.io]
+    Socket -->|Updates| Frontend
+```
 
 ## 📖 About
 **Bhopal Food Choice** is a full-stack MERN application designed to solve the problem of ordering hygienic, premium food while traveling by train. It features a modern, luxury-themed UI, real-time order tracking, and a unique "Group Ordering" feature for families and large groups.
